@@ -6,4 +6,4 @@ export const healthCheck = asyncHandler(async (req, res) => {
 
 export const routeNotFound = asyncHandler(async (req, res) => {
    new NotFoundResponse("Route not found").send(res);
-})
+});

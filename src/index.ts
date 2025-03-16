@@ -1,12 +1,9 @@
 import "module-alias/register";
 import "@lib/configs/env.config";
 
-import app from "./app";
-import http from "http";
+import server from "./app";
 import { getEnv } from "@lib/constants";
 import { connectToDatabase } from "@lib/configs";
-
-const server = http.createServer(app);
 
 server.listen(getEnv("PORT"), async () => {
    await connectToDatabase();

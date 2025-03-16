@@ -1,3 +1,4 @@
+import http from "http";
 import cors from "cors";
 import helmet from "helmet";
 import express from "express";
@@ -26,4 +27,8 @@ app.use("*", controllers.routeNotFound);
 
 app.use(errorMiddleware);
 
-export default app;
+const server = http.createServer(app);
+
+server.timeout = 60 * 5 * 1000; // 5 minutes
+
+export default server;
