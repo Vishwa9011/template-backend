@@ -17,5 +17,5 @@ export const getEnv = (key: EnvVariables): string => {
 
 // Validate required env variables at startup
 Object.entries(envVariables).forEach(([key, value]) => {
-   if (!value) throw new Error(`🚨 Startup error: "${key}" is missing. Set it in .env.`);
+   if (!value) throw new Error(`🚨 Startup error: "${key}" is missing. Set it in '.env' file.`);
 });
