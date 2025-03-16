@@ -1,0 +1,58 @@
+{
+   "name": "backend-template-v2",
+   "version": "1.0.0",
+   "description": "",
+   "main": "dist/index.js",
+   "scripts": {
+      "start": "NODE_ENV=production node dist/index.js",
+      "dev": "NODE_ENV=development tsc-watch --onSuccess \"node dist/index.js\"",
+      "build": "tsc",
+      "lint": "eslint . --fix",
+      "lint:check": "eslint .",
+      "format": "prettier --write .",
+      "format:check": "prettier --check ."
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "type": "commonjs",
+   "dependencies": {
+      "@upstash/redis": "^1.34.5",
+      "cookie-parser": "^1.4.7",
+      "cors": "^2.8.5",
+      "express": "^4.21.2",
+      "helmet": "^8.0.0",
+      "joi": "^17.13.3",
+      "module-alias": "^2.2.3",
+      "mongodb": "^6.14.2",
+      "mongoose": "^8.12.1",
+      "morgan": "^1.10.0",
+      "siwe": "^3.0.0",
+      "unique-username-generator": "^1.4.0",
+      "winston": "^3.17.0"
+   },
+   "devDependencies": {
+      "@eslint/js": "^9.22.0",
+      "@types/cookie-parser": "^1.4.8",
+      "@types/cors": "^2.8.17",
+      "@types/express": "^5.0.0",
+      "@types/module-alias": "^2.0.4",
+      "@types/morgan": "^1.9.9",
+      "@types/node": "^22.13.10",
+      "@typescript-eslint/eslint-plugin": "^8.26.1",
+      "@typescript-eslint/parser": "^8.26.1",
+      "dotenv": "^16.4.7",
+      "eslint": "^9.22.0",
+      "eslint-config-prettier": "^10.1.1",
+      "eslint-plugin-prettier": "^5.2.3",
+      "globals": "^16.0.0",
+      "prettier": "^3.5.3",
+      "tsc-watch": "^6.2.1",
+      "typescript": "^5.8.2",
+      "typescript-eslint": "^8.26.1"
+   },
+   "_moduleAliases": {
+      "@": "./dist",
+      "@lib": "./dist/lib"
+   }
+}

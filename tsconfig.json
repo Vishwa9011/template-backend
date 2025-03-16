@@ -1,0 +1,22 @@
+{
+   "compilerOptions": {
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "baseUrl": "./src",
+      "paths": {
+         "@/*": ["*"],
+         "@lib/*": ["lib/*"]
+      },
+      "moduleResolution": "Node16",
+      "module": "Node16",
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "strict": true
+   },
+   "include": ["src/**/*", "src/lib/types/globals.d.ts"],
+   "exclude": ["node_modules", "dist"],
+   "ts-node": {
+      "files": true
+   }
+}
