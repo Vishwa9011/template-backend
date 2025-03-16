@@ -3,7 +3,7 @@ import helmet from "helmet";
 import express from "express";
 import { userRouter } from "./routes";
 import cookieParser from "cookie-parser";
-import { healthCheck } from "./controllers";
+import * as controllers from "./controllers";
 import { corsOptionsDelegate } from "./lib/configs/cors.config";
 import { checkForAuthorization, errorMiddleware, morganMiddleware } from "@/middlewares";
 
@@ -18,8 +18,11 @@ app.use(cookieParser());
 app.use(cors(corsOptionsDelegate));
 app.use(checkForAuthorization);
 
-app.get("/health", healthCheck);
 app.use("/api/v1/users", userRouter);
+
+// Health check
+app.get("/health", controllers.healthCheck);
+app.use("*", controllers.routeNotFound);
 
 app.use(errorMiddleware);
 

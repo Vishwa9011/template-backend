@@ -1,2 +1,2 @@
 export * from "./users.controllers";
-export * from "./health.controller";
+export * from "./common.controllers";
