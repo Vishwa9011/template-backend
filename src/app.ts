@@ -5,7 +5,7 @@ import express from "express";
 import { userRouter } from "./routes";
 import cookieParser from "cookie-parser";
 import * as controllers from "./controllers";
-import { corsOptionsDelegate } from "./lib/configs/cors.config";
+import { corsOptionsDelegate } from "./lib/configs";
 import { checkForAuthorization, errorMiddleware, morganMiddleware } from "@/middlewares";
 
 const app = express();
