@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
+export const userRoles = ["USER", "ADMIN"] as const;
+export type UserRole = (typeof userRoles)[number];
+
 export interface IUser {
    _id: mongoose.ObjectId;
    address: string;
    username: string;
-   role: "USER" | "ADMIN";
+   role: UserRole;
    createdAt: Date;
    updatedAt: Date;
 }
@@ -24,7 +27,7 @@ const userSchema = new mongoose.Schema<IUser>(
       },
       role: {
          type: String,
-         enum: ["USER", "ADMIN"],
+         enum: userRoles,
          default: "USER"
       }
    },

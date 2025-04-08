@@ -1,6 +1,6 @@
-import Joi from "joi";
+import z from "zod";
 import crypto from "crypto";
-import { IUser } from "@/models";
+import { userRoles } from "@/models";
 import { Response } from "express";
 import { redisClient } from "../configs";
 import { BadRequestError } from "./api-error";
@@ -8,31 +8,25 @@ import { BadRequestError } from "./api-error";
 const SESSION_EXPIRATION_SECONDS = 60 * 60 * 24 * 7;
 export const COOKIE_SESSION_KEY = "session-id";
 
-const sessionSchema = Joi.object<UserSession>({
-   _id: Joi.string().required(),
-   role: Joi.string().valid("USER", "ADMIN").required()
+const sessionSchema = z.object({
+   _id: z.string(),
+   role: z.enum(userRoles)
 });
 
-export type UserSession = {
-   _id: string;
-   role: IUser["role"];
-};
+type UserSession = z.infer<typeof sessionSchema>;
 
 export async function getUserSessionById(sessionId: string) {
-   const user = await redisClient.get(`session:${sessionId}`);
-   if (!user) return null;
+   const rawUser = await redisClient.get(`session:${sessionId}`);
+   if (!rawUser) return null;
 
-   const { error, value } = sessionSchema.validate(user);
-   return error ? null : (value as UserSession);
+   const { success, data: user } = sessionSchema.safeParse(rawUser);
+   return success ? (user as UserSession) : null;
 }
 
 export async function createUserSession(user: UserSession, res: Response) {
    const sessionId = crypto.randomUUID();
 
-   const { error, value } = sessionSchema.validate(user);
-   if (error) throw new BadRequestError(`Invalid user session: ${error.message}`);
-
-   await redisClient.set(`session:${sessionId}`, value, {
+   await redisClient.set(`session:${sessionId}`, sessionSchema.parse(user), {
       ex: SESSION_EXPIRATION_SECONDS
    });
 

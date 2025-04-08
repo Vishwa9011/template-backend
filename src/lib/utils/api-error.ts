@@ -9,6 +9,7 @@ export enum ErrorType {
    INTERNAL = "InternalError",
    NOT_FOUND = "NotFoundError",
    BAD_REQUEST = "BadRequestError",
+   VALIDATION_ERROR = "ValidationError",
    FORBIDDEN = "ForbiddenError"
 }
 
@@ -32,6 +33,8 @@ export abstract class ApiError extends Error {
          case ErrorType.FORBIDDEN:
             return new NotFoundResponse(err.message).send(res);
          case ErrorType.BAD_REQUEST:
+            return new BadRequestErrorResponse(err.message).send(res);
+         case ErrorType.VALIDATION_ERROR:
             return new BadRequestErrorResponse(err.message).send(res);
          default:
             let message = err.message;
@@ -75,5 +78,11 @@ export class NotFoundError extends ApiError {
 export class BadRequestError extends ApiError {
    constructor(message = "Bad Request") {
       super(ErrorType.BAD_REQUEST, message);
+   }
+}
+
+export class ValidationError extends ApiError {
+   constructor(message = "Validation Error") {
+      super(ErrorType.VALIDATION_ERROR, message);
    }
 }
