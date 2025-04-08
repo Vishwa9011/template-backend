@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import { asyncHandler, AuthFailureError, getUserSessionById } from "@/lib/utils";
-import { COOKIE_SESSION_KEY } from "@/lib/utils";
-import { IUser } from "@/models";
-=======
 import { IUser } from "@/models";
 import { COOKIE_SESSION_KEY } from "@/lib/utils";
 import { asyncHandler, AuthFailureError, getUserSessionById } from "@/lib/utils";
->>>>>>> 201266f (validation library change)
 
 export const checkForAuthorization = asyncHandler(async (req, res, next) => {
    const sessionId = req.cookies[COOKIE_SESSION_KEY];
