@@ -1,4 +1,4 @@
-import { IUser, UserRole } from "@/models";
+import { UserRole } from "@/models";
 import { COOKIE_SESSION_KEY } from "@/lib/utils";
 import { asyncHandler, AuthFailureError, getUserSessionById } from "@/lib/utils";
 
