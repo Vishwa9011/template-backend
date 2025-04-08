@@ -1,4 +1,4 @@
-import { IUser } from "@/models";
+import { IUser, UserRole } from "@/models";
 import { COOKIE_SESSION_KEY } from "@/lib/utils";
 import { asyncHandler, AuthFailureError, getUserSessionById } from "@/lib/utils";
 
@@ -12,7 +12,7 @@ export const checkForAuthorization = asyncHandler(async (req, res, next) => {
    next();
 });
 
-export const restrictTo = (...roles: IUser["role"][]) =>
+export const restrictTo = (...roles: UserRole[]) =>
    asyncHandler(async (req, res, next) => {
       if (!req.user) throw new AuthFailureError();
       if (!roles.includes(req.user.role)) throw new AuthFailureError("You are not authorized to perform this action");
