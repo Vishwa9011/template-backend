@@ -33,7 +33,6 @@ export abstract class ApiError extends Error {
          case ErrorType.FORBIDDEN:
             return new NotFoundResponse(err.message).send(res);
          case ErrorType.BAD_REQUEST:
-            return new BadRequestErrorResponse(err.message).send(res);
          case ErrorType.VALIDATION_ERROR:
             return new BadRequestErrorResponse(err.message).send(res);
          default:
