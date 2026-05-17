@@ -3,7 +3,7 @@ import { createLogger, format, transports } from "winston";
 
 const { combine, json, prettyPrint, timestamp } = format;
 
-const logger = createLogger({
+export const logger = createLogger({
    level: "error",
    format: combine(timestamp(), json(), prettyPrint()),
    transports: [new transports.File({ filename: "logs/error-logs.log" })]

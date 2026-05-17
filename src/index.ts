@@ -6,7 +6,7 @@ import { getEnv } from "@lib/constants";
 import { connectToDatabase } from "@lib/configs";
 
 server.listen(getEnv("PORT"), async () => {
-   await connectToDatabase();
+   // await connectToDatabase();
    console.log(`✅ Server is running on port http://localhost:${getEnv("PORT")}`);
 });
 
